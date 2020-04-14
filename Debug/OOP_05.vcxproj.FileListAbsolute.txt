@@ -1,0 +1,2 @@
+D:\Programming\OOP\OOP_05\Debug\OOP_05.exe
+D:\Programming\OOP\OOP_05\Debug\OOP_05.pdb

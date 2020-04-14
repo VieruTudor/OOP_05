@@ -1,0 +1,5 @@
+﻿  UI.cpp
+D:\Programming\OOP\OOP_05\UI.cpp(56,20): warning C4101: 'exception': unreferenced local variable
+D:\Programming\OOP\OOP_05\UI.cpp(79,20): warning C4101: 'exception': unreferenced local variable
+D:\Programming\OOP\OOP_05\UI.cpp(126,20): warning C4101: 'exception': unreferenced local variable
+  OOP_05.vcxproj -> D:\Programming\OOP\OOP_05\Debug\OOP_05.exe
