@@ -1,0 +1,21 @@
+[2020-05-11 14:56:47] [info] Start Program:
+Path:"D:\\Programming\\OOP\\OOP_05\\OOP_05\\x64\\Debug\\OOP_05.exe"
+Arguments:
+Working directory: "D:\\Programming\\OOP\\OOP_05\\OOP_05\\"
+Modules: Selected: D:\Programming\OOP\OOP_05\OOP_05\x64\Debug\OOP_05.exe Excluded: 
+Sources: Selected: D:\Programming\OOP\OOP_05\OOP_05 Excluded: UI.cpp SplitFunction.cpp DynamicArray.cpp Repo.cpp 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\Tudor\AppData\Local\Temp\3dal0qni.p1p 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2020-05-11 14:56:47] [info] Module: D:\Programming\OOP\OOP_05\OOP_05\x64\Debug\OOP_05.exe is selected because it matches selected pattern: D:\Programming\OOP\OOP_05\OOP_05\x64\Debug\OOP_05.exe
+[2020-05-11 14:56:48] [info] ----------------------------------------------------
+[2020-05-11 14:56:48] [info] Coverage binary generated in file: C:\Users\Tudor\AppData\Local\Temp\3dal0qni.p1p
+[2020-05-11 14:56:48] [info] ----------------------------------------------------

@@ -58,6 +58,11 @@ public:
 	void listMyList();
 
 	/*
+	Gets an input file name, processes it in a valid form (double \ for escape sequences) and sends it to service
+	*/
+	void setFileName(string fileName);
+
+	/*
 	Runs the application
 	*/
 	void run();

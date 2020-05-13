@@ -1,12 +1,12 @@
 #pragma once
 #include "Repo.hpp"
-
+#include "FileRepository.hpp"
 class Controller
 {
 private:
-	Repository repo;
+	FileRepository repo;
 	int currentStatueIndex;
-	DynamicArray<GuardianStatue> myList;
+	vector<GuardianStatue> myList;
 public:
 	/*
 	Default constructor of the controller class
@@ -15,7 +15,7 @@ public:
 	/*
 	Constructor for the controller class, initialised with a repository object as parameter
 	*/
-	Controller(Repository& repository);
+	Controller(FileRepository& repository);
 
 	/*
 	Based on the parameters from the UI, creates a Guardian Statue and sends it to repo for further adding.
@@ -36,12 +36,12 @@ public:
 	/*
 	Gets a copy of the statues list from the repo
 	*/
-	DynamicArray<GuardianStatue> getAllStatues();
+	vector<GuardianStatue> getAllStatues();
 
 	/*
 	Returns a list of statues, filtered by material and having age less than a given input
 	*/
-	DynamicArray<GuardianStatue> getFilteredStatues(string& material, int age);
+	vector<GuardianStatue> getFilteredStatues(string& material, int age);
 
 	/*
 	Gets the next guardian statue in the list.
@@ -56,7 +56,12 @@ public:
 	/*
 	Gets the list of saved guardian statues.
 	*/
-	DynamicArray<GuardianStatue> getMyList();
+	vector<GuardianStatue> getMyList();
+
+	void setFileName(string fileName);
+
+	string getFileName();
 
 
+	void clearFile();
 };

@@ -141,7 +141,9 @@
     <ClInclude Include="Controller.hpp" />
     <ClInclude Include="Domain.hpp" />
     <ClInclude Include="DynamicArray.hpp" />
+    <ClInclude Include="FileRepository.hpp" />
     <ClInclude Include="Repo.hpp" />
+    <ClInclude Include="SplitFunction.hpp" />
     <ClInclude Include="Tester.hpp" />
     <ClInclude Include="UI.hpp" />
   </ItemGroup>
@@ -149,8 +151,10 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Domain.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="FileRepository.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Repo.cpp" />
+    <ClCompile Include="SplitFunction.cpp" />
     <ClCompile Include="Tester.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>

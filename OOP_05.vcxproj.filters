@@ -33,6 +33,12 @@
     <ClInclude Include="Tester.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FileRepository.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitFunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DynamicArray.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

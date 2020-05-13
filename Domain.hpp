@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <sstream>
+#include <vector>
+#include "SplitFunction.hpp"
 using namespace std;
 
 class GuardianStatue
@@ -19,6 +22,11 @@ public:
 	string getCorporealForm() const { return corporealForm; }
 	
 	bool operator==(const GuardianStatue& other);
+	friend istream& operator>>(istream& is, GuardianStatue& statue);
+	friend ostream& operator<<(ostream& os, GuardianStatue& statue);
+
+
+
 	string toString();
 };
 

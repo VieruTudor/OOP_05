@@ -4,7 +4,7 @@ Controller::Controller()
 {
 }
 
-Controller::Controller(Repository& repository)
+Controller::Controller(FileRepository& repository)
 {
 	this->repo = repository;
 	currentStatueIndex = 0;
@@ -13,7 +13,14 @@ Controller::Controller(Repository& repository)
 void Controller::addGuardianStatue(string& powerWord, string& material, int age, string& corporealForm)
 {
 	GuardianStatue guardianStatueToAdd = GuardianStatue(powerWord, material, age, corporealForm);
-	this->repo.addGuardianStatue(guardianStatueToAdd);
+	try
+	{
+		this->repo.addGuardianStatue(guardianStatueToAdd);
+	}
+	catch (exception&)
+	{
+		throw exception();
+	}
 }
 
 void Controller::deleteGuardianStatue(string& powerWord)
@@ -28,25 +35,25 @@ void Controller::updateGuardianStatue(string& powerWord, string& newMaterial, in
 	this->repo.updateGuardianStatue(oldGuardianStatue, newGuardianStatue);
 }
 
-DynamicArray<GuardianStatue> Controller::getAllStatues()
+vector<GuardianStatue> Controller::getAllStatues()
 {
-	return this->repo.getAllStatues();
+	return this->repo.getStatues();
 }
 
-DynamicArray<GuardianStatue> Controller::getFilteredStatues(string& material, int age)
+vector<GuardianStatue> Controller::getFilteredStatues(string& material, int age)
 {
-	DynamicArray<GuardianStatue> statuesList = this->repo.getAllStatues();
-	DynamicArray<GuardianStatue> filteredStatuesList;
-	for (int i = 0; i < statuesList.getSize(); i++)
-		if (statuesList[i].getMaterial() == material && statuesList[i].getAge() < age)
-			filteredStatuesList.add(statuesList[i]);
+	vector<GuardianStatue> statuesList = this->repo.getStatues();
+	vector<GuardianStatue> filteredStatuesList;
+	for (auto statue : statuesList)
+		if (statue.getMaterial() == material && statue.getAge() < age)
+			filteredStatuesList.push_back(statue);
 	return filteredStatuesList;
 }
 GuardianStatue Controller::getNextGuardianStatue()
 {
-	GuardianStatue guardianStatueToReturn = this->repo.getAllStatues()[currentStatueIndex];
+	GuardianStatue guardianStatueToReturn = this->repo.getStatues()[currentStatueIndex];
 	this->currentStatueIndex++;
-	if (currentStatueIndex == this->repo.getAllStatues().getSize())
+	if (currentStatueIndex == this->repo.getSize())
 		currentStatueIndex = 0;
 	return guardianStatueToReturn;
 }
@@ -58,19 +65,33 @@ void Controller::saveGuardianStatue(string& powerWord)
 	if (index != -1)
 	{
 		string savedPowerWord = powerWord;
-		string savedMaterial = this->repo.getAllStatues()[index].getMaterial();
-		string savedCorporealForm = this->repo.getAllStatues()[index].getCorporealForm();
-		int savedAge = this->repo.getAllStatues()[index].getAge();
+		string savedMaterial = this->repo.getStatues()[index].getMaterial();
+		string savedCorporealForm = this->repo.getStatues()[index].getCorporealForm();
+		int savedAge = this->repo.getStatues()[index].getAge();
 		GuardianStatue savedStatue = GuardianStatue(savedPowerWord, savedMaterial, savedAge, savedCorporealForm);
-		myList.add(savedStatue);
+		myList.push_back(savedStatue);
 	}
 }
 
-DynamicArray<GuardianStatue> Controller::getMyList()
+vector<GuardianStatue> Controller::getMyList()
 {
 	return this->myList;
 }
 
+void Controller::setFileName(string fileName)
+{
+	this->repo.setFileName(fileName);
+}
+
+string Controller::getFileName()
+{
+	return this->repo.getFileName();
+}
+
+void Controller::clearFile()
+{
+	this->repo.clearFile();
+}
 
 
 

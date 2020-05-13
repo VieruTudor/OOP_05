@@ -1,12 +1,12 @@
 #pragma once
 #include "Domain.hpp"
 #include "DynamicArray.hpp"
-
-
+#include <vector>
+#include <algorithm>
 class Repository
 {
 private:
-	DynamicArray<GuardianStatue> statuesList;
+	vector<GuardianStatue> statuesList;
 
 public:
 	/*
@@ -32,7 +32,7 @@ public:
 	/*
 	Returns a copy of a list of statues in the repo 
 	*/
-	DynamicArray<GuardianStatue> getAllStatues();
+	vector<GuardianStatue> getAllStatues();
 
 	/*
 	Searches for a certain GuardianStatue object in the repo list
@@ -40,4 +40,5 @@ public:
 	*/
 	int searchGuardianStatue(GuardianStatue& guardianStatue);
 
+	int getSize();
 };

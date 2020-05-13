@@ -2,45 +2,56 @@
 
 Repository::Repository()
 {
-	statuesList = DynamicArray<GuardianStatue>();
+	
 }
-
+/*
+TODO: IMPLEMENT FUNCTIONS FOR STL VECTOR (?) ---
+	  IMPLEMENT FUNCTIONS FOR FILES ^ ---
+	  I/O OPERATORS
+*/
 void Repository::addGuardianStatue(GuardianStatue& guardianStatue)
 {
-	if (this->searchGuardianStatue(guardianStatue) != -1)
+	int statueIndex = this->searchGuardianStatue(guardianStatue);
+	if (statueIndex != -1)
 		throw exception();
-	this->statuesList.add(guardianStatue);
+	this->statuesList.push_back(guardianStatue);
 }
 
 void Repository::deleteGuardianStatue(const string& powerWord)
 {
 	GuardianStatue dummyStatue = GuardianStatue(powerWord, "", 0, "");
-	int searchIndex = this->searchGuardianStatue(dummyStatue);
-	if (searchIndex == -1)
+	int statueIndex = this->searchGuardianStatue(dummyStatue);
+	if (statueIndex == -1)
 		throw exception();
-	else
-		this->statuesList.deleteFromPosition(searchIndex);
+	this->statuesList.erase(this->statuesList.begin() + statueIndex);
 }
 
 void Repository::updateGuardianStatue(GuardianStatue& oldGuardianStatue, GuardianStatue& newGuardianStatue)
 {
-	if (this->searchGuardianStatue(oldGuardianStatue) == -1)
+	int updateIndex = this->searchGuardianStatue(oldGuardianStatue);
+	if (updateIndex == -1)
 		throw exception();
-	for (int i = 0; i < this->statuesList.getSize(); i++)
-		if (this->statuesList[i] == oldGuardianStatue)
-			this->statuesList[i] = newGuardianStatue;
+	this->statuesList[updateIndex] = newGuardianStatue;
 }
 
-DynamicArray<GuardianStatue> Repository::getAllStatues()
+vector<GuardianStatue> Repository::getAllStatues()
 {
 	return this->statuesList;
 }
 
 int Repository::searchGuardianStatue(GuardianStatue& guardianStatue)
 {
-	for (int index = 0; index < this->statuesList.getSize(); index++)
-		if (this->statuesList[index] == guardianStatue)
+	int index = 0;
+	for (auto statue : this->statuesList)
+	{
+		if (statue.getPowerWord() == guardianStatue.getPowerWord())
 			return index;
+		index++;
+	}
 	return -1;
+}
 
+int Repository::getSize()
+{
+	return this->statuesList.size();
 }

@@ -9,12 +9,15 @@ using namespace std;
 
 int main()
 {
-	RepoTester repoTester = RepoTester();
+	FileRepoTester repoTester = FileRepoTester();
 	repoTester.testAll();
 	ControllerTester controllerTester = ControllerTester();
 	controllerTester.testAll();
+	DomainTester domainTester = DomainTester();
+	domainTester.testAll();
 
-	Repository repo = Repository();
+	string filename = "test1.txt";
+	FileRepository repo = FileRepository(filename);
 	Controller controller = Controller(repo);
 	UserInterface ui = UserInterface(controller);
 	ui.run();

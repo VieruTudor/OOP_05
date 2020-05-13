@@ -1,11 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "UI.hpp"
+#include "SplitFunction.hpp"
 #include <iostream>
 #include <cstring>
 
 
 using namespace std;
+/*
+TODO : IMPLEMENT FILELOCATION (CAUSE EVERYTHING ELSE WORKS)
+	   TESTS :(
 
+
+*/
 
 UserInterface::UserInterface(Controller& controller)
 {
@@ -131,10 +137,10 @@ void UserInterface::updateGuardianStatueUI(char* parameters)
 
 void UserInterface::listGuardianStatuesUI()
 {
-	DynamicArray<GuardianStatue> guardianStatues = this->controller.getAllStatues();
-	for (int i = 0; i < guardianStatues.getSize(); i++)
+	vector<GuardianStatue> guardianStatues = this->controller.getAllStatues();
+	for (int i = 0; i < guardianStatues.size(); i++)
 	{
-		cout << guardianStatues[i].toString();
+		cout << guardianStatues[i] << "\n";
 	}
 
 }
@@ -150,6 +156,7 @@ void UserInterface::listGuardianStatuesWithParametersUI(char* parameters)
 		cout << "NO\n";
 		return;
 	}
+	
 	parameters = strtok(NULL, " ,");
 	age = atoi(parameters);
 	if (age == 0)
@@ -157,11 +164,12 @@ void UserInterface::listGuardianStatuesWithParametersUI(char* parameters)
 		cout << "NO\n";
 		return;
 	}
-	DynamicArray<GuardianStatue> filteredGuardianStatues = this->controller.getFilteredStatues(material, age);
-	if (filteredGuardianStatues.getSize() == 0)
+	
+	vector<GuardianStatue> filteredGuardianStatues = this->controller.getFilteredStatues(material, age);
+	if (filteredGuardianStatues.size() == 0)
 		listGuardianStatuesUI();
-	for (int i = 0; i < filteredGuardianStatues.getSize(); i++)
-		cout << filteredGuardianStatues[i].toString();
+	for (int i = 0; i < filteredGuardianStatues.size(); i++)
+		cout << filteredGuardianStatues[i] << "\n";
 }
 
 void UserInterface::getNextGuardianStatueUI()
@@ -186,9 +194,21 @@ void UserInterface::saveGuardianStatue(char* parameters)
 
 void UserInterface::listMyList()
 {
-	DynamicArray<GuardianStatue> myList = this->controller.getMyList();
-	for (int i = 0; i < myList.getSize(); i++)
+	vector<GuardianStatue> myList = this->controller.getMyList();
+	for (int i = 0; i < myList.size(); i++)
 		cout << myList[i].toString();
+}
+
+void UserInterface::setFileName(string fileName)
+{
+	string updatedFileName = "";
+	for (auto character : fileName)
+	{
+		if (character == '\\')
+			updatedFileName += "\\";
+		updatedFileName += character;
+	}
+	this->controller.setFileName(updatedFileName);
 }
 
 void UserInterface::run()
@@ -201,8 +221,13 @@ void UserInterface::run()
 		string mode;
 
 		getline(cin, userCommand);
+		vector<string> commandParts = split(userCommand, ' ');
 		if (userCommand == "exit")
 			return;
+		else if (commandParts[0] == "fileLocation")
+		{
+			this->setFileName(commandParts[1]);
+		}
 		else if (userCommand == "mode A")
 		{
 			while (true)
@@ -245,6 +270,8 @@ void UserInterface::run()
 			}
 			userCommand = "mode B";
 		}
+		else
+			cout << "Not a mode!\n";
 		if (userCommand == "mode B")
 		{
 			while (true)
@@ -286,6 +313,7 @@ void UserInterface::run()
 		}
 		else
 			cout << "Not a mode!\n";
+		
 	}
 
 

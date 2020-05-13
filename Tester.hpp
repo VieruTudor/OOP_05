@@ -2,10 +2,10 @@
 #include "Controller.hpp"
 #include "Domain.hpp"
 
-class RepoTester
+class FileRepoTester
 {
 private:
-	Repository testRepo;
+	FileRepository testRepo;
 public:
 	void testAll();
 	void addGuardianStatue_validObject_addedToList();
@@ -14,15 +14,17 @@ public:
 	void updateGuardianStatue_inexistingObject_exception();
 	void deleteGuardianStatue_existingObject_deleted();
 	void deleteGuardianStatue_inexistingObject_exception();
-
+	void getSize_goodListSize();
+	void getStatues_goodStatuesList();
+	void getFileName_goodFileName();
 };
 
 class ControllerTester
 {
 private:
-	Repository controllerTestRepo;
+	FileRepository controllerTestRepo;
 	Controller testController;
-	DynamicArray<GuardianStatue> testArray;
+	vector<GuardianStatue> testArray;
 
 public:
 	void testAll();
@@ -32,5 +34,22 @@ public:
 	void updateGuardianStatue_inexistingObject_exception();
 	void deleteGuardianStatue_existingObject_deleted();
 	void deleteGuardianStatue_inexistingObject_exception();
+	void getFilteredStatues_goodFilterList();
+	void saveGuardianStatue_goodSavedStatue();
+	void getMyList_goodList();
+	void setFileName_goodFileName_goodReceived();
+	
 
+};
+
+class DomainTester
+{
+public:
+	void testAll();
+	void getPowerWord_matchingPowerWord();
+	void getMaterial_matchingMaterial();
+	void getAge_matchingAge();
+	void getCorporealForm_matchingCorporealForm();
+	void equalityOperator_matchingStatues();
+	void toString_matchingString();
 };
